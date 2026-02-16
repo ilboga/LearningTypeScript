@@ -1,6 +1,53 @@
 // Write your types here! ✨
 
-let current = {
+export type PlaceBase = {
+	name: string;
+	proximity: number;
+	treasure?: string;
+};
+
+export type Clearing = PlaceBase & {
+	through?: Place;
+	type: "clearing";
+};
+
+export type Path = PlaceBase & {
+	shortcut?: Place;
+	through: Place;
+	type: "path";
+};
+
+export type Town = PlaceBase & {
+	around?: Place;
+	through?: Place;
+	type: "town";
+};
+
+export type StreamBase = PlaceBase & {
+	type: "stream";
+};
+
+export type StreamEnd = StreamBase & {
+	area: "end";
+	upstream: Place;
+};
+
+export type StreamBegin = StreamBase & {
+	area: "begin";
+	downstream: Place;
+};
+
+export type StreamMiddle = StreamBase & {
+	area: "middle";
+	downstream: Place;
+	upstream: Place;
+};
+
+export type Stream = StreamBegin | StreamMiddle | StreamEnd;
+
+export type Place = Clearing | Path | Town | Stream;
+
+let current: Place | undefined = {
 	name: "Woesong Bridge",
 	proximity: 100,
 	through: {
@@ -65,7 +112,7 @@ let current = {
 	type: "path",
 };
 
-let treasure;
+let treasure: string | undefined;
 
 while (current) {
 	console.log(`At: ${current.name}`);
