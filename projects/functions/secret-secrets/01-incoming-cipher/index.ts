@@ -14,5 +14,3 @@ export function createCipher(cypher: stringToString): stringToString {
 	};
 	return output;
 }
-
-// createCipher((e) => "abc")
