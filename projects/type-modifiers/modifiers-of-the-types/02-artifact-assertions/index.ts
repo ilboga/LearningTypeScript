@@ -21,3 +21,11 @@ const artifacts = {
 		type: "sword",
 	},
 };
+
+//export type ArtifactName = "Black Garnet" | "Castle TypeScript" | "Cosmic Key" | "Power Sword" | "Starseed" | "Sword of the Ancients"
+
+export type ArtifactName = keyof typeof artifacts;
+
+export function getArtifactType(key: ArtifactName) {
+	return artifacts[key].type;
+}
